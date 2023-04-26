@@ -248,6 +248,7 @@ class TaskController extends Controller
             ->where('users.id', $user_id)
             ->where('tasks.manages', '=', 'Me aconseja Pymeralia')
             ->orWhere('tasks.manages', '=', 'Me lo gestiono yo')
+            ->orderBy('start_date')
             ->get(['tasks.*', 'answers.recommendation']);
     
         foreach ($tasks as $task) {
@@ -257,7 +258,7 @@ class TaskController extends Controller
     
         return response()->json($tasks);
     }
-
+    
     public function updateState($id, Request $request)
     {
         $task = Task::find($id);

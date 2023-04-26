@@ -20,7 +20,7 @@
             hasHandles: true,
             style: {
               background: 'orange',
-              borderRadius: '20px',
+              borderRadius: '10px',
               color: 'black'
             }
           }
@@ -40,22 +40,6 @@ const bars = ref([])
 onMounted(() => {
   axios.get('/tasks').then(response => {
     taskList.value = response.data
-    bars.value = taskList.value.map((task, index) => {
-      return {
-        beginDate: task.start_date,
-        endDate: task.final_date,
-        ganttBarConfig: {
-          id: 'Tarea-' + (index + 1),
-          label: task.recommendation,
-          hasHandles: true,
-          style: {
-            background: 'orange',
-            borderRadius: '20px',
-            color: 'black'
-          }
-        }
-      }
-    })
   })
 })
 </script>
